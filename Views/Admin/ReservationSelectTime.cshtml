@@ -1,0 +1,45 @@
+﻿@* @{
+    ViewData["Title"] = "Select Time";
+} *@
+
+<h1>Select Time</h1>
+
+<form asp-action="ReservationSelectTime" method="post">
+    <div class="form-group">
+        <label>Start Time</label>
+        <select name="startTime" id="start-time" class="form-control" required>
+            <option value="">Select start time</option>
+            @foreach (var time in ViewBag.TimeOptions)
+            {
+                @if (time.Disabled)
+                {
+                    <option value="@time.Value" disabled>@time.Text</option>
+                }
+                else
+                {
+                    <option value="@time.Value">@time.Text</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>End Time</label>
+        <select name="endTime" id="end-time" class="form-control" required>
+            <option value="">Select end time</option>
+            @foreach (var time in ViewBag.TimeOptions)
+            {
+                @if (time.Disabled)
+                {
+                    <option value="@time.Value" disabled>@time.Text</option>
+                }
+                else
+                {
+                    <option value="@time.Value">@time.Text</option>
+                }
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Reservation</button>
+</form>

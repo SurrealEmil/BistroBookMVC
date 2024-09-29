@@ -1,0 +1,24 @@
+﻿@using BistroBookMVC.Models.Reservation
+@model List<Reservation>
+
+<a asp-action="ReservationSelectDate" asp-controller="Admin" class="btn btn-primary">Create</a>
+
+@foreach (var res in Model)
+{
+    <div class="card" style="width:18rem">
+        <div class="card-body">
+            <h5 class="card-text">CustomerId: @res.CustomerId</h5>
+            <p class="card-text">TableId: @res.TableId</p>
+            <p class="card-text">TableNumber: @res.TableNumber</p>
+            <p class="card-text">CustomerFullName: @res.CustomerFullName</p>
+            <p class="card-text">Date: @res.Date</p>
+            <p class="card-text">StartTime: @res.StartTime</p>
+            <p class="card-text">EndTime: @res.EndTime</p>
+            <a asp-controller="Admin" asp-action="ReservationEdit" asp-route-id=@res.Id class="btn btn-warning">Edit</a>
+            <form metod="post" asp-controller="Admin" asp-action="ResDelete" style="display:inline;">
+                <input type="hidden" name="id" value="@res.Id" />
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+}

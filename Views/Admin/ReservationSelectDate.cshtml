@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Select Date";
+}
+
+<h1>Select Reservation Date</h1>
+
+<form asp-action="ReservationSelectDate" method="post">
+    <div class="form-group">
+        <label>Date</label>
+        <input type="date" name="date" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Next</button>
+</form>

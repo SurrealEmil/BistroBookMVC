@@ -1,8 +1,50 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model List<Menu>
+
+@* @{
+    var uniqueName = User.FindFirst("unique_name").Value;
+    var email = User.FindFirst("email").Value;
+    var role = User.FindFirst("role").Value;
+}
+
+<p>Email: @email</p>
+<p>Welcome, @uniqueName. you are logged in as: @role.</p> *@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <br />
+    <br />
+    <h6 class="lead">Our Most Popular Dishes</h6>
+    <p style="max-width: 600px; margin: 0 auto;">
+        <em>
+            Discover the flavors that keep our guests coming back.
+            From carefully crafted recipes to the freshest ingredients,
+            these are our most loved dishes, perfected for your enjoyment.
+        </em>
+    </p>
+    <div class="row d-flex justify-content-center">
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger" style="max-width: 600px;">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+
+        @foreach (var dish in Model)
+        {
+            {
+                <div class="card m-3" style="width: 18rem;">
+@*                     <img src="@dish.ImgUrl" class="card-img-top" alt="@dish.DishName"> *@
+                    <div class="card-body">
+                        <h5 class="card-title">@dish.DishName</h5>
+                        <p class="card-text">@dish.Description</p>
+                        <a asp-controller="Menu" asp-action="Index" class="btn btn-primary">Read more</a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
 </div>
