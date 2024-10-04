@@ -1,22 +1,40 @@
 ﻿@model List<Menu>
 
-<a asp-action="MenuCreate" asp-controller="Admin" class="btn btn-primary">Create</a>
+<div class="row d-flex justify-content-center">
+    <a asp-action="MenuCreate" asp-controller="Admin" class="btn btn-primary">Create</a>
 
-@foreach (var dish in Model)
-{
-    <div class="card" style="width:18rem">
-        <div class="card-body">
-            <h5 class="card-title">@dish.DishName</h5>
-            <p class="card-text">Id: @dish.Id</p>
-            <p class="card-text">Description: @dish.Description</p>
-            <p class="card-text">Price: @dish.Price</p>
-            <p class="card-text">IsFavorite: @dish.IsFavorite</p>
-            <p class="card-text">IsAvailable: @dish.IsAvailable</p>
-            <a asp-controller="Admin" asp-action="MenuEdit" asp-route-id=@dish.Id class="btn btn-warning">Edit</a>
-            <form metod="post" asp-action="Delete" style="display:inline;">
-                <input type="hidden" name="id" value="@dish.Id" />
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger" style="max-width: 600px;">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+    <div class="container text-center">
+        <div class="row">
+            @foreach (var dish in Model)
+            {
+                <div class="col-md-4 mb-3">
+                    <!-- Adjust the column size as needed (e.g., col-md-4 for 3 columns on medium screens) -->
+                    <div class="border p-3 rounded">
+                        <!-- Optional styling for each dish item -->
+                        <div class="fw-bold">@dish.DishName</div>
+                        <p>Id: @dish.Id</p>
+                        <p>Description: @dish.Description</p>
+                        <p>Price: @dish.Price :-</p>
+                        <p>IsFavorite: @dish.IsFavorite</p>
+                        <p>IsAvailable: @dish.IsAvailable</p>
+                        <div class="mt-2">
+                            <a asp-controller="Admin" asp-action="MenuEdit" asp-route-id="@dish.Id" class="btn btn-warning btn-sm">Edit</a>
+                            <form method="post" asp-action="Delete" style="display:inline;">
+                                <input type="hidden" name="id" value="@dish.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     </div>
-}
+
+
+</div>

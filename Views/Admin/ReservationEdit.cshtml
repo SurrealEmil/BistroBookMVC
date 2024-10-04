@@ -3,12 +3,7 @@
 
 <h1>Create New Reservation</h1>
 
-<form asp-controller="Admin" asp-action="ResEdit" method="post">
-    <div class="form-group">
-        <label asp-for="CustomerId">CustomerId</label>
-        <input asp-for="CustomerId" class="form-control" />
-        <span asp-validation-for="CustomerId" class="text-danger"></span>
-    </div>
+<form asp-controller="Admin" asp-action="ReservationEdit" method="post">
     <div class="form-group">
         <label asp-for="TableId">TableId</label>
         <input asp-for="TableId" class="form-control" />
@@ -24,7 +19,6 @@
         <input asp-for="Date" type="date" class="form-control" />
         <span asp-validation-for="Date" class="text-danger"></span>
     </div>
-    <!-- Start Time Dropdown -->
     <div class="form-group">
         <label asp-for="StartTime">Start Time</label>
         <select asp-for="StartTime" id="start-time" class="form-control">
@@ -37,45 +31,7 @@
         <span asp-validation-for="StartTime" class="text-danger"></span>
     </div>
 
-    <!-- End Time Dropdown -->
-    <div class="form-group">
-        <label asp-for="EndTime">End Time</label>
-        <select asp-for="EndTime" id="end-time" class="form-control" disabled>
-            <option value="">Select end time</option>
-            @foreach (var time in ViewBag.TimeOptions)
-            {
-                <option value="@time.Value">@time.Text</option>
-            }
-        </select>
-        <span asp-validation-for="EndTime" class="text-danger"></span>
-    </div>
-
     <input type="hidden" asp-for="Id" />
 
     <button type="submit" class="btn btn-primary">Create</button>
 </form>
-
-<!-- JavaScript Section -->
-@section Scripts {
-    <script>
-        document.getElementById("start-time").addEventListener("change", function () {
-            var startTime = this.value;
-            var endTimeDropdown = document.getElementById("end-time");
-
-            // Enable end-time dropdown when start time is selected
-            endTimeDropdown.disabled = false;
-
-            // Get all options in the end time dropdown
-            var endTimeOptions = endTimeDropdown.getElementsByTagName("option");
-
-            // Loop through each end time option and disable times before the start time
-            for (var i = 0; i < endTimeOptions.length; i++) {
-                if (endTimeOptions[i].value <= startTime) {
-                    endTimeOptions[i].disabled = true;  // Disable times before start time
-                } else {
-                    endTimeOptions[i].disabled = false; // Enable times after start time
-                }
-            }
-        });
-    </script>
-}

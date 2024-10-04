@@ -1,0 +1,27 @@
+﻿ Menu Styles Scoped to Menu Page Only 
+.menu-page {
+    background-color: #fff9da;  Applies background to the menu container 
+    font-family: 'YourDesiredFont', serif;  Apply font to menu-page only 
+    height: 100vh;  Makes the menu page fill the full viewport height 
+    display: flex;  Use flexbox for better layout control 
+    flex-direction: column;  Stack children vertically 
+}
+
+.menu-page .menu-container {
+    flex: 1;  Allow the menu container to take the available space 
+    padding: 20px;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    overflow-y: auto;  Enable scrolling if the content overflows 
+}
+
+.menu-page .menu-item {
+    margin-bottom: 15px;
+}
+
+.menu-page .card-title,
+.menu-page .card-text {
+    margin-bottom: 5px;
+    font-family: 'YourDesiredFont', serif;  Font applied only to menu items 
+}

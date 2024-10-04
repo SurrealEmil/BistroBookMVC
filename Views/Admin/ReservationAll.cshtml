@@ -7,11 +7,11 @@
 {
     <div class="card" style="width:18rem">
         <div class="card-body">
-            <h5 class="card-text">CustomerId: @res.CustomerId</h5>
-            <p class="card-text">TableId: @res.TableId</p>
+            <h5 class="card-text">Name: @res.CustomerFullName</h5>
+            <p class="card-text">CustomerId: @res.CustomerId</p>
             <p class="card-text">TableNumber: @res.TableNumber</p>
-            <p class="card-text">CustomerFullName: @res.CustomerFullName</p>
-            <p class="card-text">Date: @res.Date</p>
+            <p class="card-text">TableId: @res.TableId</p>
+            <p class="card-text">Date: @res.Date.ToString("yyyy-MM-dd")</p>
             <p class="card-text">StartTime: @res.StartTime</p>
             <p class="card-text">EndTime: @res.EndTime</p>
             <a asp-controller="Admin" asp-action="ReservationEdit" asp-route-id=@res.Id class="btn btn-warning">Edit</a>

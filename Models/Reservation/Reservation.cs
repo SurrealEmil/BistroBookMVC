@@ -9,7 +9,7 @@ namespace BistroBookMVC.Models.Reservation
 
         // Guest details
         [Required]
-        [Range(1, 100, ErrorMessage = "Guest count must be between 1 and 100.")]
+        [Range(1, 20, ErrorMessage = "Guest count must be between 1 and 20.")]
         public int GuestCount { get; set; }
         public string CustomerFullName { get; set; }
         public int TableNumber { get; set; }

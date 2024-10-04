@@ -1,13 +1,21 @@
 ﻿@model List<Menu>
 
+<div class="container text-center menu-page">
+    <br />
+    <h1 class="display-5">BistroBook</h1>
+    <br />
+    <h2 class="display-6">Menu</h2>
 
-@foreach (var dish in Model)
-{
-    <div class="card m-3" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">@dish.DishName</h5>
-            <p class="card-text">@dish.Description</p>
-            <p class="card-text">@dish.Price</p>
-        </div>
+    <div class="menu-container mt-4">
+        @foreach (var dish in Model)
+        {
+            <div class="menu-item mb-4">
+                <h5 class="card-title">@dish.DishName</h5>
+                <p class="card-text">@dish.Description</p>
+                <p class="card-text">@dish.Price :-</p>
+            </div>
+        }
     </div>
-}
+</div>
+
+

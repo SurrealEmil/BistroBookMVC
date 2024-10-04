@@ -1,31 +1,24 @@
-﻿﻿<main>
-    <h1>ADMIN MENU</h1>
+﻿<main>
+    <h1>ADMIN</h1>
 
-    <div class="card">
-        <h4 class="card-header">All reservations</h4>
-        <div class="card-body">
-            <p class="card-text">View, change and handle all reservations</p>
-            <a asp-controller="Admin" asp-action="ReservationAll" class="btn btn-primary">View all reservations</a>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <h4 class="card-header">All reservations</h4>
+                <div class="card-body">
+                    <p class="card-text">View, change and handle all reservations</p>
+                    <a asp-controller="Admin" asp-action="ReservationAll" class="btn btn-primary">View all reservations</a>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="card">
-        <h4 class="card-header">Specific reservation</h4>
-        <div class="card-body">
-            <p class="card-text">View, change and handle a specific reservation</p>
-
-            <form asp-controller="Admin" asp-action="ReservationId" method="get">
-                <label for="getReservationId">Reservation ID:</label>
-                <input class="form-control" type="number" id="getReservationId" name="reservationId" placeholder="Enter Reservation ID" required>
-                <button type="submit" class="btn btn-primary">View reservation</button>
-            </form>
-
-        </div>
-    </div>
-    <div class="card">
-        <h4 class="card-header">Menu</h4>
-        <div class="card-body">
-            <p class="card-text">View, change, update and handle the menu</p>
-            <a asp-controller="Admin" asp-action="Menu" class="btn btn-primary">View menu</a>
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <h4 class="card-header">Menu</h4>
+                <div class="card-body">
+                    <p class="card-text">View, change, update and handle the menu</p>
+                    <a asp-controller="Admin" asp-action="Menu" class="btn btn-primary">View menu</a>
+                </div>
+            </div>
         </div>
     </div>
 </main>

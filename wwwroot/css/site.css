@@ -20,3 +20,52 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Style for the active page */
+.nav-item.active .nav-link {
+    background-color: #f0e68c; /* Add a background color to show the active view */
+    border-radius: 5px; /* Rounded corners */
+    color: #000; /* Text color for active item */
+}
+
+/* Hover effect for all nav items */
+.nav-item .nav-link:hover {
+    background-color: #dcdcdc; /* Lighter background on hover */
+    border-radius: 5px; /* Consistent rounded corners */
+    color: #333; /* Change text color slightly on hover */
+}
+
+/* Optionally, make the active state more visible */
+.nav-item.active .nav-link:hover {
+    background-color: #e0c56c; /* A slight change on hover to indicate the active state */
+}
+
+/* Default for large screens */
+.homepage-hero-image {
+    background-image: url("/images/ResBig.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Medium screen */
+@media (max-width: 1200px) {
+    .homepage-hero-image {
+        background-image: url("/images/ResMedium.jpg");
+        height: 75vh;
+    }
+}
+
+/* Small screens */
+@media (max-width: 768px) {
+    .homepage-hero-image {
+        background-image: url("/images/ResSmall.jpg");
+        height: 50vh;
+    }
+}
+
+
