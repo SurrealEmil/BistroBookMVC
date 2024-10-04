@@ -1,4 +1,4 @@
-﻿namespace BistroBookMVC.Models
+﻿namespace BistroBookMVC.Models.Customer
 {
     public class Customer
     {
