@@ -1,0 +1,27 @@
+﻿/* Default for large screens */
+.homepage-hero-image {
+    background-image: url("/images/ResBig.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Medium screen */
+@media (max-width: 1200px) {
+    .homepage-hero-image {
+        background-image: url("/images/ResMedium.jpg");
+        height: 75vh;
+    }
+}
+
+/* Small screens */
+@media (max-width: 768px) {
+    .homepage-hero-image {
+        background-image: url("/images/ResSmall.jpg");
+        height: 50vh;
+    }
+}

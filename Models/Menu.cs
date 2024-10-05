@@ -12,7 +12,7 @@ namespace BistroBookMVC.Models
         public string DishName { get; set; }
 
         [Required]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "Description must be between 5 and 50 characters.")]
+        [StringLength(200, MinimumLength = 5, ErrorMessage = "Description must be between 5 and 200 characters.")]
         public string Description { get; set; }
 
         // Price of the dish
