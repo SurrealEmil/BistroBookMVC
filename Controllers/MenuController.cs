@@ -19,7 +19,7 @@ namespace BistroBookMVC.Controllers
         {
             ViewData["Title"] = "Menu Dishes";
 
-            var response = await _client.GetAsync($"{baseUri}api/Menus/GetAllMenuDishes");
+            var response = await _client.GetAsync($"{baseUri}api/Menus/GetAllAvailableMenuDishes");
 
             var json = await response.Content.ReadAsStringAsync();
 

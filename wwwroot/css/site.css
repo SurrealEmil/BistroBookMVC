@@ -21,6 +21,8 @@ body {
   margin-bottom: 60px;
 }
 
+/*Header*/
+
 /* Style for the active page */
 .nav-item.active .nav-link {
     background-color: #f0e68c; /* Add a background color to show the active view */
@@ -40,32 +42,13 @@ body {
     background-color: #e0c56c; /* A slight change on hover to indicate the active state */
 }
 
-/* Default for large screens */
-.homepage-hero-image {
-    background-image: url("/images/ResBig.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
+.custom-navbar {
+    height: 80px; /* Set your desired height */
+    padding: 0 20px; /* Optional: Add horizontal padding */
+}
+
+.custom-navbar .navbar-brand {
+    height: 100%; /* Center brand vertically */
     display: flex;
-    justify-content: center;
     align-items: center;
 }
-
-/* Medium screen */
-@media (max-width: 1200px) {
-    .homepage-hero-image {
-        background-image: url("/images/ResMedium.jpg");
-        height: 75vh;
-    }
-}
-
-/* Small screens */
-@media (max-width: 768px) {
-    .homepage-hero-image {
-        background-image: url("/images/ResSmall.jpg");
-        height: 50vh;
-    }
-}
-
-

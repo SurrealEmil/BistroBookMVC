@@ -28,6 +28,10 @@ namespace BistroBookMVC.Controllers
 
         public async Task<IActionResult> ReservationAll()
         {
+            // Set the title for the View using ViewData
+            ViewData["Title"] = "All Reservations";
+
+            // Fetch reservations from the API
             var response = await _client.GetAsync($"{baseUri}api/Reservations/GetAllReservations");
 
             if (!response.IsSuccessStatusCode)
@@ -35,9 +39,37 @@ namespace BistroBookMVC.Controllers
 
             var json = await response.Content.ReadAsStringAsync();
 
+            // Deserialize the reservations from the JSON response
             var reservations = JsonConvert.DeserializeObject<List<Reservation>>(json);
 
-            return View(reservations);
+            // Sort reservations by Date and StartTime
+            var sortedReservations = reservations.OrderBy(r => r.Date).ThenBy(r => r.StartTime).ToList();
+
+            // Pass the sorted reservations to the view
+            return View(sortedReservations);
+        }
+
+        public IActionResult ReservationCreate()
+        {
+            ViewData["Title"] = "New Reservation";
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ReservationCreate(CreateReservation res)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(res);
+            }
+            var json = JsonConvert.SerializeObject(res);
+
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _client.PostAsync($"{baseUri}api/Reservations/AddReservation", content);
+
+            return RedirectToAction("ReservationAll");
         }
 
         public async Task<IActionResult> ReservationEdit(int Id)
@@ -49,7 +81,7 @@ namespace BistroBookMVC.Controllers
 
             var json = await response.Content.ReadAsStringAsync();
 
-            var reservation = JsonConvert.DeserializeObject<CreateReservation>(json);
+            var reservation = JsonConvert.DeserializeObject<EditReservation>(json);
 
             // Use the service to populate ViewBag.TimeOptions
             ViewBag.TimeOptions = GenerateTimeOptions();
@@ -58,7 +90,7 @@ namespace BistroBookMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ReservationEdit(CreateReservation res)
+        public async Task<IActionResult> ReservationEdit(EditReservation res)
         {
             if (!ModelState.IsValid)
             {

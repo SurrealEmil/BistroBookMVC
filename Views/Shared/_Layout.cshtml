@@ -7,6 +7,7 @@
     <meta name="description" content="BistroBookMVC offers a delightful dining experience with a diverse menu and easy online reservations. Join us for a meal!">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/Menu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Home.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BistroBookMVC.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM0v4kS9rN4b0z+ev2YZfZyRcfj5tT3KPJ0bZX" crossorigin="anonymous" />
@@ -16,57 +17,41 @@
     <meta property="og:description" content="Join us at BistroBook for a delightful dining experience." />
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
-        <div class="container-fluid">
-            <!-- Left: BistroBook brand -->
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-tertiary">
+            <div class="container-fluid flex-column align-items-center">
+                <a class="navbar-brand text-dark" style="font-family: Pacifico, cursive; font-weight: 600;" asp-area="" asp-controller="Home" asp-action="Index">
                     <i class="fa-solid fa-utensils"></i> BistroBook
                 </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <div class="navbar-collapse collapse">
-                <!-- Center: Menu items -->
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active" : "")">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Menu" && ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active" : "")">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Menu" asp-action="Index">Menu</a>
-                    </li>
-                    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Reservation" && ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active" : "")">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Reservation" asp-action="Index">Reservation</a>
-                    </li>
-                    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Admin" && ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active" : "")">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="http://localhost:5173" target="_blank">Reservation</a>
-                    </li>
-                </ul>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                <div class="d-flex ms-auto">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
-                            <button type="submit" class="btn btn-danger">Logout</button>
-                        </form>
-                    }
-                    else
-                    {
-                        <form asp-controller="Account" asp-action="Login" method="get" class="d-inline">
-                            <button type="submit" class="btn btn-primary">Login</button>
-                        </form>
-                    }
+                <div class="navbar-collapse collapse d-sm-flex flex-column align-items-center">
+                    <ul class="navbar-nav flex-row">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Menu" asp-action="Index">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="http://localhost:5173" target="_blank">Reservation</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
-        </div>
-    </nav>
-</header>
+        </nav>
+    </header>
+
 
     <div class="container-fluid">
         <main role="main" class="pb-3">
@@ -76,7 +61,19 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - BistroBookMVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - BistroBookMVC - <a asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+            }
+            else
+            {
+                <form asp-controller="Account" asp-action="Login" method="get" class="d-inline">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            }
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

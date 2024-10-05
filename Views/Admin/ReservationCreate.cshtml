@@ -1,9 +1,9 @@
 ﻿@using BistroBookMVC.Models.Reservation
-@model EditReservation
+@model CreateReservation
 
 <h1>Create New Reservation</h1>
 
-<form asp-controller="Admin" asp-action="ReservationEdit" method="post">
+<form asp-controller="Admin" asp-action="ReservationCreate" method="post">
 
     <!-- Date field at the top -->
     <div class="form-group">
@@ -16,7 +16,6 @@
     <div class="form-group">
         <label asp-for="GuestCount">Guests</label>
         <select asp-for="GuestCount" id="guest-count" class="form-control">
-@*             <option value="">Select number of guests</option> *@
             @for (int i = 1; i <= 8; i++)
             {
                 <option value="@i">@i</option>
@@ -29,8 +28,6 @@
     <div class="form-group">
         <label asp-for="TableId">TableId</label>
         <select asp-for="TableId" id="table-id" class="form-control">
-@*             <option value="">Select a table</option> *@
-            <!-- Options will be populated via JavaScript -->
         </select>
         <span asp-validation-for="TableId" class="text-danger"></span>
     </div>
@@ -39,13 +36,37 @@
     <div class="form-group">
         <label asp-for="StartTime">Start Time</label>
         <select asp-for="StartTime" id="start-time" class="form-control">
-@*             <option value="">Select start time</option> *@
-            <!-- Options will be populated via JavaScript -->
         </select>
         <span asp-validation-for="StartTime" class="text-danger"></span>
     </div>
 
-    <input type="hidden" asp-for="Id" />
+    <!-- First Name field -->
+    <div class="form-group">
+        <label asp-for="FirstName">First Name</label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    <!-- Last Name field -->
+    <div class="form-group">
+        <label asp-for="LastName">Last Name</label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <!-- Phone Number field -->
+    <div class="form-group">
+        <label asp-for="PhoneNumber">Phone Number</label>
+        <input asp-for="PhoneNumber" class="form-control" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+
+    <!-- Email field -->
+    <div class="form-group">
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
 
     <button type="submit" class="btn btn-primary">Create</button>
 </form>
@@ -136,4 +157,5 @@
                 });
     </script>
 }
+
 

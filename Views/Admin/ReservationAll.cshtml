@@ -1,24 +1,42 @@
 ﻿@using BistroBookMVC.Models.Reservation
 @model List<Reservation>
 
-<a asp-action="ReservationSelectDate" asp-controller="Admin" class="btn btn-primary">Create</a>
+<h2 class="display-3">Reservations</h2>
 
-@foreach (var res in Model)
-{
-    <div class="card" style="width:18rem">
-        <div class="card-body">
-            <h5 class="card-text">Name: @res.CustomerFullName</h5>
-            <p class="card-text">CustomerId: @res.CustomerId</p>
-            <p class="card-text">TableNumber: @res.TableNumber</p>
-            <p class="card-text">TableId: @res.TableId</p>
-            <p class="card-text">Date: @res.Date.ToString("yyyy-MM-dd")</p>
-            <p class="card-text">StartTime: @res.StartTime</p>
-            <p class="card-text">EndTime: @res.EndTime</p>
-            <a asp-controller="Admin" asp-action="ReservationEdit" asp-route-id=@res.Id class="btn btn-warning">Edit</a>
-            <form metod="post" asp-controller="Admin" asp-action="ResDelete" style="display:inline;">
-                <input type="hidden" name="id" value="@res.Id" />
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
-        </div>
-    </div>
-}
+<a asp-action="ReservationCreate" asp-controller="Admin" class="btn btn-outline-primary" style="margin-bottom: 1rem;">Create Reservation</a>
+
+<table class="table" style="border: 1px solid gray">
+    <thead>
+        <tr>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Customer ID</th>
+            <th scope="col">Table Number</th>
+            <th scope="col">Table ID</th>
+            <th scope="col">Date</th>
+            <th scope="col">Start Time</th>
+            <th scope="col">End Time</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var res in Model)
+        {
+            <tr class="table-secondary">
+                <td>@res.CustomerFullName</td>
+                <td>@res.CustomerId</td>
+                <td>@res.TableNumber</td>
+                <td>@res.TableId</td>
+                <td>@res.Date.ToString("yyyy-MM-dd")</td>
+                <td>@res.StartTime</td>
+                <td>@res.EndTime</td>
+                <td>
+                    <a asp-controller="Admin" asp-action="ReservationEdit" asp-route-id="@res.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <form method="post" asp-controller="Admin" asp-action="ResDelete" style="display:inline;">
+                        <input type="hidden" name="id" value="@res.Id" />
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

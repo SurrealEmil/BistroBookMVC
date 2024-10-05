@@ -1,4 +1,4 @@
-﻿ Menu Styles Scoped to Menu Page Only 
+﻿/* Menu Styles Scoped to Menu Page Only 
 .menu-page {
     background-color: #fff9da;  Applies background to the menu container 
     font-family: 'YourDesiredFont', serif;  Apply font to menu-page only 
@@ -24,4 +24,4 @@
 .menu-page .card-text {
     margin-bottom: 5px;
     font-family: 'YourDesiredFont', serif;  Font applied only to menu items 
-}
+}*/
