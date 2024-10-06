@@ -19,6 +19,9 @@ namespace BistroBookMVC.Controllers
 
         public async Task<IActionResult> Index()
         {
+
+            ViewData["IsLandingPage"] = true;
+
             List<Menu> menu = new List<Menu>();
             try
             {
@@ -41,12 +44,6 @@ namespace BistroBookMVC.Controllers
 
             return View(menu);
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

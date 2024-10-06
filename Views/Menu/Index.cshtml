@@ -1,11 +1,13 @@
 ﻿@model List<Menu>
 
-<div class="container text-center menu-page">
-    <br />
-    <h1 class="display-5">BistroBook</h1>
-    <br />
-    <h2 class="display-6">Menu</h2>
+<div class="container text-center menu-page py-5">
+    <!-- Restaurant Title -->
+    <h1 class="display-4 fw-bold text-uppercase">BistroBook</h1>
 
+    <!-- Section Heading -->
+    <h2 class="display-6 mb-5 text-muted">Our Exquisite Menu</h2>
+
+    <!-- Menu Items -->
     <div class="menu-container mt-4">
         @foreach (var dish in Model)
         {
@@ -17,5 +19,6 @@
         }
     </div>
 </div>
+
 
 

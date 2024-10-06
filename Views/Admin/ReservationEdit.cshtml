@@ -1,54 +1,58 @@
 ﻿@using BistroBookMVC.Models.Reservation
 @model EditReservation
 
-<h1>Create New Reservation</h1>
+<div class="container h-100">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Edit Reservation</h2>
 
-<form asp-controller="Admin" asp-action="ReservationEdit" method="post">
+                    <form asp-controller="Admin" asp-action="ReservationEdit" method="post">
+                        <!-- Date field at the top -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Date" class="form-label">Date</label>
+                            <input asp-for="Date" type="date" id="date-input" class="form-control" />
+                            <span asp-validation-for="Date" class="text-danger"></span>
+                        </div>
 
-    <!-- Date field at the top -->
-    <div class="form-group">
-        <label asp-for="Date">Date</label>
-        <input asp-for="Date" type="date" id="date-input" class="form-control" />
-        <span asp-validation-for="Date" class="text-danger"></span>
+                        <!-- Guest Count dropdown -->
+                        <div class="form-group mb-3">
+                            <label asp-for="GuestCount" class="form-label">Guests</label>
+                            <select asp-for="GuestCount" id="guest-count" class="form-control">
+                                @for (int i = 1; i <= 8; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            </select>
+                            <span asp-validation-for="GuestCount" class="text-danger"></span>
+                        </div>
+
+                        <!-- TableId dropdown, dynamically populated -->
+                        <div class="form-group mb-3">
+                            <label asp-for="TableId" class="form-label">Table</label>
+                            <select asp-for="TableId" id="table-id" class="form-control">
+                            </select>
+                            <span asp-validation-for="TableId" class="text-danger"></span>
+                        </div>
+
+                        <!-- Start Time dropdown, dynamically populated -->
+                        <div class="form-group mb-3">
+                            <label asp-for="StartTime" class="form-label">Start Time</label>
+                            <select asp-for="StartTime" id="start-time" class="form-control">
+                            </select>
+                            <span asp-validation-for="StartTime" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!-- Guest Count dropdown -->
-    <div class="form-group">
-        <label asp-for="GuestCount">Guests</label>
-        <select asp-for="GuestCount" id="guest-count" class="form-control">
-@*             <option value="">Select number of guests</option> *@
-            @for (int i = 1; i <= 8; i++)
-            {
-                <option value="@i">@i</option>
-            }
-        </select>
-        <span asp-validation-for="GuestCount" class="text-danger"></span>
-    </div>
-
-    <!-- TableId dropdown, dynamically populated -->
-    <div class="form-group">
-        <label asp-for="TableId">TableId</label>
-        <select asp-for="TableId" id="table-id" class="form-control">
-@*             <option value="">Select a table</option> *@
-            <!-- Options will be populated via JavaScript -->
-        </select>
-        <span asp-validation-for="TableId" class="text-danger"></span>
-    </div>
-
-    <!-- Start Time dropdown, dynamically populated -->
-    <div class="form-group">
-        <label asp-for="StartTime">Start Time</label>
-        <select asp-for="StartTime" id="start-time" class="form-control">
-@*             <option value="">Select start time</option> *@
-            <!-- Options will be populated via JavaScript -->
-        </select>
-        <span asp-validation-for="StartTime" class="text-danger"></span>
-    </div>
-
-    <input type="hidden" asp-for="Id" />
-
-    <button type="submit" class="btn btn-primary">Create</button>
-</form>
+</div>
 
 <!-- Add scripts for handling dropdown changes and API calls -->
 @section Scripts {
@@ -68,7 +72,7 @@
                             tableDropdown.empty();
                             tableDropdown.append('<option value="">Select a table</option>');
                             $.each(data, function (index, table) {
-                                tableDropdown.append(`<option value="${table.id}">${table.seatCount}</option>`);
+                                tableDropdown.append(`<option value="${table.id}">${table.tableNumber}</option>`);
                             });
                         }
                     });

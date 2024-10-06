@@ -1,27 +1,19 @@
-﻿/* Menu Styles Scoped to Menu Page Only 
-.menu-page {
-    background-color: #fff9da;  Applies background to the menu container 
-    font-family: 'YourDesiredFont', serif;  Apply font to menu-page only 
-    height: 100vh;  Makes the menu page fill the full viewport height 
-    display: flex;  Use flexbox for better layout control 
-    flex-direction: column;  Stack children vertically 
-}
-
-.menu-page .menu-container {
-    flex: 1;  Allow the menu container to take the available space 
-    padding: 20px;
-    border: none;
-    box-shadow: none;
-    background: transparent;
-    overflow-y: auto;  Enable scrolling if the content overflows 
-}
-
-.menu-page .menu-item {
-    margin-bottom: 15px;
-}
-
-.menu-page .card-title,
-.menu-page .card-text {
-    margin-bottom: 5px;
-    font-family: 'YourDesiredFont', serif;  Font applied only to menu items 
+﻿/* Background settings */
+/*body {
+    background: linear-gradient(to bottom right, #4a90e2, #50a3a2);
+    font-family: 'Arial', sans-serif;
+    color: #333;
 }*/
+
+/* Container Styling */
+.menu-page {
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white background */
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+/* Title and Heading Styling */
+h1, h2 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle text shadow for readability */
+}
