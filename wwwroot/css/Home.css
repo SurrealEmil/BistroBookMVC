@@ -1,27 +1,30 @@
-﻿/* Default for large screens */
+﻿/* General styling for the hero image container */
 .homepage-hero-image {
-    background-image: url("/images/ResBig.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
+    height: calc(100vh - 80px); /* Full viewport height minus header height */
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative; /* Keep it in the normal flow of the document */
+    z-index: 0; /* Ensure it stays behind the header */
 }
 
-/* Medium screen */
+/* The image itself should cover the container */
+.homepage-hero-image img {
+    height: 100%; /* Full height */
+    width: 100%; /* Full width */
+    object-fit: cover; /* Maintain aspect ratio and cover the entire container */
+}
+
+/* Media queries for responsive images */
 @media (max-width: 1200px) {
     .homepage-hero-image {
-        background-image: url("/images/ResMedium.jpg");
-        height: 75vh;
+        height: calc(75vh - 80px); /* Adjust height for medium screens */
     }
 }
 
-/* Small screens */
 @media (max-width: 768px) {
     .homepage-hero-image {
-        background-image: url("/images/ResSmall.jpg");
-        height: 50vh;
+        height: calc(50vh - 80px); /* Adjust height for small screens */
     }
 }
+

@@ -1,28 +1,37 @@
 ﻿@{
     ViewData["Title"] = "Home - BistroBook - Your Favorite Dining Experience";
 }
+
 @model List<Menu>
 
 <div class="homepage-hero-image">
+    <figure style="height: 100%; width: 100%; margin: 0;">
+        <picture>
+            <source media="(max-width: 768px)" srcset="/images/ResSmall.webp" type="image/webp" />
+            <source media="(max-width: 768px)" srcset="/images/ResSmall.jpg" type="image/jpeg" />
+            <source media="(max-width: 1200px)" srcset="/images/ResMedium.webp" type="image/webp" />
+            <source media="(max-width: 1200px)" srcset="/images/ResMedium.jpg" type="image/jpeg" />
+            <source srcset="/images/ResBig.webp" type="image/webp" />
+            <source srcset="/images/ResBig.jpg" type="image/jpeg" />
+            <img src="/images/ResBig.jpg"
+                 alt="A beautiful restaurant interior showcasing elegant table settings and ambient lighting."
+                 class="img-fluid" loading="lazy" />
+        </picture>
+    </figure>
+    <div class="text-center position-absolute bottom-0 left-0 right-0 d-flex justify-content-center mb-3">
+        <div class="bg-dark text-white rounded p-2 shadow scroll-down-text">
+            <p class="mb-0 fw-bold">Scroll down for more information</p>
+        </div>
+    </div>
 </div>
 
 <div class="text-center">
-    <br />
-    <h1 class="display-4">Welcome to BistroBook</h1>
-    <br />
-    <br />
-    <h2 class="lead">Our Most Popular Dishes</h2>
-    <p style="max-width: 600px; margin: 0 auto;">
-        <em>
-            Indulge in a culinary journey that delights the senses and leaves a lasting impression. Our signature dishes showcase the artistry of our chefs, combining seasonal ingredients with time-honored techniques. 
-            Each plate is a celebration of flavor, crafted to satisfy your cravings and create unforgettable dining experiences.
-        </em>
-    </p>
+    <h1 class="display-4 fw-bold">Welcome to BistroBook</h1>
+    <h2 class="display-6 text-muted">Our Most Popular Dishes</h2>
     <div class="row d-flex justify-content-center">
-
         @if (ViewBag.ErrorMessage != null)
         {
-            <div class="alert alert-danger" style="max-width: 600px;">
+            <div class="alert alert-danger col-lg-6 col-md-8 col-sm-10">
                 @ViewBag.ErrorMessage
             </div>
         }
@@ -31,11 +40,36 @@
         {
             <div class="card m-3" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">@dish.DishName</h5>
+                    <h5 class="card-title fw-bold">@dish.DishName</h5>
                     <p class="card-text">@dish.Description</p>
                 </div>
             </div>
         }
     </div>
-    <a asp-controller="Menu" asp-action="Index" class="btn btn-primary">View Full Menu</a>
+    <p class="lead mx-auto" style="max-width: 600px;">
+        <em>
+            Indulge in a culinary journey that delights the senses and leaves a lasting impression. Our signature dishes showcase the artistry of our chefs, combining seasonal ingredients with time-honored techniques.
+            Each plate is a celebration of flavor, crafted to satisfy your cravings and create unforgettable dining experiences.
+        </em>
+    </p>
+    <a asp-controller="Menu" asp-action="Index" class="btn btn-outline-primary btn-lg mt-4">View Full Menu</a>
 </div>
+
+<script>
+    const scrollDownText = document.querySelector('.scroll-down-text');
+
+    function handleScrollAndResize() {
+        if (window.innerWidth < 1200) {
+            scrollDownText.classList.add('fade-out'); // Fade out on small screens
+        } else {
+            if (window.scrollY > 10) { // Adjust the scroll value as needed
+                scrollDownText.classList.add('fade-out');
+            } else {
+                scrollDownText.classList.remove('fade-out');
+            }
+        }
+    }
+
+    document.addEventListener('scroll', handleScrollAndResize);
+    window.addEventListener('resize', handleScrollAndResize); // Check on resize
+</script>

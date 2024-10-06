@@ -28,10 +28,8 @@ namespace BistroBookMVC.Controllers
 
         public async Task<IActionResult> ReservationAll()
         {
-            // Set the title for the View using ViewData
             ViewData["Title"] = "All Reservations";
 
-            // Fetch reservations from the API
             var response = await _client.GetAsync($"{baseUri}api/Reservations/GetAllReservations");
 
             if (!response.IsSuccessStatusCode)
@@ -39,13 +37,10 @@ namespace BistroBookMVC.Controllers
 
             var json = await response.Content.ReadAsStringAsync();
 
-            // Deserialize the reservations from the JSON response
             var reservations = JsonConvert.DeserializeObject<List<Reservation>>(json);
 
-            // Sort reservations by Date and StartTime
-            var sortedReservations = reservations.OrderBy(r => r.Date).ThenBy(r => r.StartTime).ToList();
+            var sortedReservations = reservations.OrderBy(r => r.Date).ThenBy(r => r.StartTime).ThenBy(r => r.CustomerFullName).ToList();
 
-            // Pass the sorted reservations to the view
             return View(sortedReservations);
         }
 
@@ -83,9 +78,6 @@ namespace BistroBookMVC.Controllers
 
             var reservation = JsonConvert.DeserializeObject<EditReservation>(json);
 
-            // Use the service to populate ViewBag.TimeOptions
-            ViewBag.TimeOptions = GenerateTimeOptions();
-
             return View(reservation);
         }
 
@@ -94,8 +86,6 @@ namespace BistroBookMVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                // Use the service to populate ViewBag.TimeOptions
-                ViewBag.TimeOptions = GenerateTimeOptions();
                 return View(res);
             }
             var json = JsonConvert.SerializeObject(res);
@@ -115,7 +105,6 @@ namespace BistroBookMVC.Controllers
             return RedirectToAction("ReservationAll");
         }
 
-        // End of reservation
 
         // Start of Menu
 
@@ -188,27 +177,6 @@ namespace BistroBookMVC.Controllers
             var response = await _client.DeleteAsync($"{baseUri}api/Menus/DeleteDish/{id}");
 
             return RedirectToAction("Menu");
-        }
-
-        // Helper method at the bottom of the controller
-        private List<SelectListItem> GenerateTimeOptions()
-        {
-            var start = new TimeSpan(10, 0, 0); // 10:00 AM
-            var end = new TimeSpan(22, 0, 0);   // 10:00 PM
-            var interval = new TimeSpan(0, 30, 0); // 30 minutes interval
-
-            List<SelectListItem> timeOptions = new List<SelectListItem>();
-
-            for (var time = start; time <= end; time += interval)
-            {
-                timeOptions.Add(new SelectListItem
-                {
-                    Value = time.ToString(),
-                    Text = time.ToString(@"hh\:mm")
-                });
-            }
-
-            return timeOptions;
         }
     }
 }

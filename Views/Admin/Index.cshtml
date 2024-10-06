@@ -1,24 +1,54 @@
-﻿<main>
-    <h1>ADMIN</h1>
+﻿<main class="container mt-4">
+    <h2 class="text-center display-3 mb-5">Admin Dashboard</h2>
 
     <div class="row">
-        <div class="col-md-6 mb-3">
-            <div class="card">
-                <h4 class="card-header">All reservations</h4>
+        <div class="col-md-6 mb-4">
+            <div class="card border-dark shadow-sm">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="mb-0">All Reservations</h4>
+                </div>
                 <div class="card-body">
-                    <p class="card-text">View, change and handle all reservations</p>
-                    <a asp-controller="Admin" asp-action="ReservationAll" class="btn btn-primary">View all reservations</a>
+                    <p class="card-text">Manage, view, and modify all reservations from this section.</p>
+                    <a asp-controller="Admin" asp-action="ReservationAll" class="btn btn-outline-primary">View All Reservations</a>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 mb-3">
-            <div class="card">
-                <h4 class="card-header">Menu</h4>
+        <div class="col-md-6 mb-4">
+            <div class="card border-dark shadow-sm">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="mb-0">Menu Management</h4>
+                </div>
                 <div class="card-body">
-                    <p class="card-text">View, change, update and handle the menu</p>
-                    <a asp-controller="Admin" asp-action="Menu" class="btn btn-primary">View menu</a>
+                    <p class="card-text">View, update, and manage the menu items here.</p>
+                    <a asp-controller="Admin" asp-action="Menu" class="btn btn-outline-primary">View Menu</a>
                 </div>
             </div>
         </div>
     </div>
 </main>
+
+@*On the fench, do i like it, not like it??*@
+
+@* <style>
+    .card {
+        border-radius: 0.5rem; /* Rounded corners for the card */
+    }
+
+    .btn-outline-primary {
+        color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-outline-primary:hover {
+            background-color: #007bff;
+            color: white; /* White text on hover */
+        }
+
+    h2.display-3 {
+        font-weight: 700; /* Bold font for the main heading */
+    }
+
+    p.card-text {
+        font-size: 1.1rem; /* Slightly larger text for better readability */
+    }
+</style> *@

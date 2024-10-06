@@ -1,34 +1,55 @@
 ﻿@model Menu
 
-<h1>Create New Dish</h1>
+<div class="container h-100">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Create New Dish</h2>
 
-<form asp-controller="Admin" asp-action="MenuCreate" method="post">
-    <div class="form-group">
-        <label asp-for="DishName">Dish</label>
-        <input asp-for="DishName" class="form-control" />
-        <span asp-validation-for="DishName" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Description">Description</label>
-        <input asp-for="Description" class="form-control" />
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Price">Price</label>
-        <input asp-for="Price" class="form-control" />
-        <span asp-validation-for="Price" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="IsFavorite">IsFavorite</label>
-        <input asp-for="IsFavorite" type="checkbox" class="form-check-input" />
-        <span asp-validation-for="IsFavorite" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="IsAvailable">IsAvailable</label>
-        <input asp-for="IsAvailable" type="checkbox" class="form-check-input" />
-        <span asp-validation-for="IsAvailable" class="text-danger"></span>
-    </div>
+                    <form asp-controller="Admin" asp-action="MenuCreate" method="post">
+                        <div class="form-group mb-3">
+                            <label asp-for="DishName" class="form-label">Dish</label>
+                            <input asp-for="DishName" class="form-control" />
+                            <span asp-validation-for="DishName" class="text-danger"></span>
+                        </div>
 
+                        <div class="form-group mb-3">
+                            <label asp-for="Description" class="form-label">Description</label>
+                            <textarea asp-for="Description" class="form-control auto-resize" rows="3" placeholder="Enter description here..."></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
 
-    <button type="submit" class="btn btn-primary">Create</button>
-</form>
+                        <div class="form-group mb-3">
+                            <label asp-for="Price" class="form-label">Price</label>
+                            <input asp-for="Price" class="form-control" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input asp-for="IsFavorite" type="checkbox" class="form-check-input" id="IsFavorite" />
+                            <label class="form-check-label" for="IsFavorite">Is Favorite</label>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input asp-for="IsAvailable" type="checkbox" class="form-check-input" id="IsAvailable" />
+                            <label class="form-check-label" for="IsAvailable">Is Available</label>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .auto-resize {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+</style>
+

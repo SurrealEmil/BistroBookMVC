@@ -20,12 +20,15 @@ namespace BistroBookMVC.Controllers
 
         public IActionResult Login()
         {
+            ViewData["Title"] = "Login";
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginAccount)
         {
+            ViewData["Title"] = "Login";
+
             var response = await _httpClient.PostAsJsonAsync("api/Accounts/Login", loginAccount);
 
             if (!response.IsSuccessStatusCode)
@@ -58,7 +61,7 @@ namespace BistroBookMVC.Controllers
                 Expires = jwtToken.ValidTo
             });
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Admin");
         }
 
         [HttpPost]
@@ -66,6 +69,8 @@ namespace BistroBookMVC.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             HttpContext.Response.Cookies.Delete("jwtToken");
+
+            ViewData["LogoutMessage"] = "You have been successfully logged out.";
 
             return RedirectToAction("Login", "Account");
         }

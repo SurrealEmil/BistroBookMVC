@@ -1,65 +1,47 @@
-﻿@model List<Menu>
+﻿<div class="container">
+    <h2 class="display-3 text-center mb-4">Menu</h2>
 
-<h2 class="display-3">Menu</h2>
-
-<a asp-action="MenuCreate" asp-controller="Admin" class="btn btn-outline-primary" style="margin-bottom: 1rem;">Create Menu Item</a>
-
-@if (ViewBag.ErrorMessage != null)
-{
-    <div class="alert alert-danger" style="max-width: 600px;">
-        @ViewBag.ErrorMessage
+    <div class="d-flex justify-content-center mb-3">
+        <a asp-action="MenuCreate" asp-controller="Admin" class="btn btn-outline-primary">Create Menu Item</a>
     </div>
-}
 
-<table class="table" style="border: 1px solid gray">
-    <thead>
-        <tr>
-            <th scope="col">Dish</th>
-            <th scope="col">Id</th>
-            <th scope="col">Description</th>
-            <th scope="col">Price</th>
-            <th scope="col">Is Favorite</th>
-            <th scope="col">Is Available</th>
-            <th scope="col">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger text-center" style="max-width: 600px; margin: 0 auto;">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+
+    <div class="row">
         @foreach (var dish in Model)
         {
-            <tr class="table-secondary">
-                <td>@dish.DishName</td>
-                <td>@dish.Id</td>
-                <td>@dish.Description</td>
-                <td>@dish.Price :-</td>
-                <td>
-                    @if (dish.IsFavorite)
-                    {
-                        <span class="badge bg-success">Yes</span>
-                    }
-                    else
-                    {
-                        <span class="badge bg-danger">No</span>
-                    }
-                </td>
-                <td>
-                    @if (dish.IsAvailable)
-                    {
-                        <span class="badge bg-success">Available</span>
-                    }
-                    else
-                    {
-                        <span class="badge bg-danger">Unavailable</span>
-                    }
-                </td>
-                <td>
-                    <a asp-controller="Admin" asp-action="MenuEdit" asp-route-id="@dish.Id" class="btn btn-warning btn-sm">Edit</a>
-                    <form method="post" asp-action="Delete" style="display:inline;">
-                        <input type="hidden" name="id" value="@dish.Id" />
-                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                    </form>
-                </td>
-            </tr>
+            <div class="col-12 mb-4">
+                <!-- Single column to ensure stacking -->
+                <div class="card border-secondary shadow-sm h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">@dish.DishName</h5>
+                        <p class="card-text flex-grow-1">Description: @dish.Description</p>
+                        <p class="card-text">Price: @dish.Price :-</p>
+                        <p class="d-flex justify-content-start">
+                            <span class="badge @(dish.IsFavorite ? "bg-success" : "bg-danger") me-2">
+                                @(dish.IsFavorite ? "Favorite" : "Not Favorite")
+                            </span>
+                            <span class="badge @(dish.IsAvailable ? "bg-success" : "bg-danger")">
+                                @(dish.IsAvailable ? "Available" : "Unavailable")
+                            </span>
+                        </p>
+                        <div class="d-flex justify-content-between mt-3">
+                            <div class="d-flex">
+                                <a asp-controller="Admin" asp-action="MenuEdit" asp-route-id="@dish.Id" class="btn btn-warning btn-sm me-2">Edit</a>
+                                <form method="post" asp-action="Delete" style="display:inline;">
+                                    <input type="hidden" name="id" value="@dish.Id" />
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
-    </tbody>
-</table>
-
+    </div>
+</div>

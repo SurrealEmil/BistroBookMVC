@@ -19,36 +19,24 @@ html {
 
 body {
   margin-bottom: 60px;
+  overflow-x: hidden;
 }
+
+
+.scroll-down-text {
+    transition: opacity 0.5s ease; /* Smooth transition for opacity */
+}
+
+.fade-out {
+    opacity: 0; /* Fade out effect */
+}
+
 
 /*Header*/
 
-/* Style for the active page */
-.nav-item.active .nav-link {
-    background-color: #f0e68c; /* Add a background color to show the active view */
-    border-radius: 5px; /* Rounded corners */
-    color: #000; /* Text color for active item */
-}
-
 /* Hover effect for all nav items */
 .nav-item .nav-link:hover {
-    background-color: #dcdcdc; /* Lighter background on hover */
-    border-radius: 5px; /* Consistent rounded corners */
-    color: #333; /* Change text color slightly on hover */
-}
-
-/* Optionally, make the active state more visible */
-.nav-item.active .nav-link:hover {
-    background-color: #e0c56c; /* A slight change on hover to indicate the active state */
-}
-
-.custom-navbar {
-    height: 80px; /* Set your desired height */
-    padding: 0 20px; /* Optional: Add horizontal padding */
-}
-
-.custom-navbar .navbar-brand {
-    height: 100%; /* Center brand vertically */
-    display: flex;
-    align-items: center;
+    background-color: gray;
+    border-radius: 5px;
+    color: #333;
 }
